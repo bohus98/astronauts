@@ -6,7 +6,7 @@ export const getAstronauts = () => async (dispatch) => {
         const {data} = await api.fetchAstronauts();
         dispatch({type: 'FETCH_ALL', payload: data});
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     
     
@@ -17,6 +17,16 @@ export const createAstronaut = (astronaut) => async (dispatch) => {
         const {data} = await api.createAstronaut(astronaut);
         dispatch({type: 'CREATE', payload: data});
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
+    }
+}
+
+export const updateAstronaut = (id,astronaut) => async (dispatch) => {
+    try {
+       const {data} =  await api.updateAstronaut(id,astronaut);
+
+       dispatch({type: 'UPDATE', payload: data});
+    } catch (error) {
+        console.log(error);
     }
 }

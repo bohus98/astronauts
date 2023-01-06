@@ -4,7 +4,7 @@ import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
-const Astronaut = ({astronaut}) => {
+const Astronaut = ({astronaut, setCurrentId}) => {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
@@ -14,7 +14,7 @@ const Astronaut = ({astronaut}) => {
                 
             </div>
             <div className={classes.overlay2}>
-                <Button style={{color: 'white'}} size="small" onClick={()=>{}}>
+                <Button style={{color: 'white'}} size="small" onClick={()=>setCurrentId(astronaut._id)}>
                     <MoreHorizIcon fontSize="default"/>
                 </Button>
             </div>

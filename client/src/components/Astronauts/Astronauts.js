@@ -4,7 +4,7 @@ import { Grid, CircularProgress } from "@material-ui/core";
 import Astronaut from "./Astronaut/Astronaut";
 import useStyles from './styles'
 
-const Astronauts = () => {
+const Astronauts = ({setCurrentId}) => {
     const astronauts = useSelector((state)=> state.astronauts);
     const classes = useStyles();
     console.log(astronauts);
@@ -13,7 +13,7 @@ const Astronauts = () => {
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {astronauts.map((astronaut)=>(
                     <Grid key={astronaut._id} item xs={12} sm={6}>
-                        <Astronaut astronaut={astronaut}></Astronaut>
+                        <Astronaut astronaut={astronaut} setCurrentId={setCurrentId}></Astronaut>
                     </Grid>
                 ))}
             </Grid>

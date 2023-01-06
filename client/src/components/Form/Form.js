@@ -1,25 +1,35 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from 'react-file-base64';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import useStyles from './styles'
 
-import { createAstronaut } from "../../actions/astronauts";
+import { createAstronaut, updateAstronaut } from "../../actions/astronauts";
 
-const Form = () => {
+const Form = ({currentId, setCurrentId}) => {
     const [astronautData, setAstronautData] = useState({firstName: '',lastName: '',superPowers: '',selectedFile: '',birthDate: '',about:''});
+    const astronaut = useSelector((state)=>currentId ? state.astronauts.find((a)=>a._id===currentId):null);
     const classes = useStyles();
     const dispatch = useDispatch();
+    useEffect(()=>{
+        if(astronaut) setAstronautData(astronaut);
+    },[astronaut])
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createAstronaut(astronautData))
+        if(currentId){dispatch(updateAstronaut(currentId,astronautData));} 
+        else {dispatch(createAstronaut(astronautData))}
+        clear();
     }
-    const clear = () => {}
+        
+    const clear = () => {
+        setCurrentId(null);
+        setAstronautData({firstName: '',lastName: '',superPowers: '',selectedFile: '',birthDate: '',about:''});
+    }
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-            <Typography variant="h6">Adding an Astronaut</Typography>
+            <Typography variant="h6">{currentId?'Editing': 'Adding'} an Astronaut</Typography>
             <TextField name="firstname" variant="outlined" label="First Name" fullWidth value={astronautData.firstName} onChange={(e)=>setAstronautData({...astronautData,firstName:e.target.value})}/>
             <TextField name="lastname" variant="outlined" label="Last Name" fullWidth value={astronautData.lastName} onChange={(e)=>setAstronautData({...astronautData,lastName:e.target.value})}/>
             <TextField name="superpowers" variant="outlined" label="Super Powers (comma separated)" fullWidth value={astronautData.superPowers} onChange={(e)=>setAstronautData({...astronautData,superPowers:e.target.value})}/>

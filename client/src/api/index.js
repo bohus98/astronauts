@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/astronauts';
+const url = 'https://astronauts-app.herokuapp.com/astronauts';
 
 export const fetchAstronauts = () => axios.get(url);
 export const createAstronaut = (newAstronaut) => axios.post(url,newAstronaut);

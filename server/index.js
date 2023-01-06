@@ -10,13 +10,15 @@ import astronautsRoutes from './routes/astronauts.js';
 const app = express();
 dotenv.config();
 
-
+app.get('/',(req,res) => {
+    res.send('Hello to Astronauts API')
+});
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 app.use('/astronauts', astronautsRoutes);
-//const CONNECTION_URL = 'mongodb+srv://matusbohucky:matusbohucky123@cluster0.35jx79s.mongodb.net/?retryWrites=true&w=majority'
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, {})

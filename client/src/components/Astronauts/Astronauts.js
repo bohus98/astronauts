@@ -1,13 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Grid, CircularProgress } from "@material-ui/core";
+
 import Astronaut from "./Astronaut/Astronaut";
 import useStyles from './styles'
 
 const Astronauts = ({setCurrentId}) => {
     const astronauts = useSelector((state)=> state.astronauts);
+
     const classes = useStyles();
-    console.log(astronauts);
+
     return (
         !astronauts.length ? <CircularProgress /> :(
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>

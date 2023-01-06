@@ -4,14 +4,17 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from "react-redux";
 
 import useStyles from './styles'
-
 import { createAstronaut, updateAstronaut } from "../../actions/astronauts";
 
 const Form = ({currentId, setCurrentId}) => {
     const [astronautData, setAstronautData] = useState({firstName: '',lastName: '',superPowers: '',selectedFile: '',birthDate: '',about:''});
+
     const astronaut = useSelector((state)=>currentId ? state.astronauts.find((a)=>a._id===currentId):null);
+
     const classes = useStyles();
+
     const dispatch = useDispatch();
+
     useEffect(()=>{
         if(astronaut) setAstronautData(astronaut);
     },[astronaut])
@@ -26,6 +29,7 @@ const Form = ({currentId, setCurrentId}) => {
         setCurrentId(null);
         setAstronautData({firstName: '',lastName: '',superPowers: '',selectedFile: '',birthDate: '',about:''});
     }
+    
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>

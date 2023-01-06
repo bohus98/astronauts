@@ -30,3 +30,12 @@ export const updateAstronaut = (id,astronaut) => async (dispatch) => {
         console.log(error);
     }
 }
+
+export const deleteAstronaut = (id) => async (dispatch) => {
+    try {
+        await api.deleteAstronaut(id);
+        dispatch({type:'DELETE', payload:id});
+    } catch (error) {
+        console.log(error);
+    }
+}

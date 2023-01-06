@@ -6,6 +6,8 @@ export default (astronauts = [], action) => {
             return [...astronauts, action.payload];
         case 'UPDATE':
             return astronauts.map((astronaut)=> astronaut._id === action.payload._id ? action.payload: astronaut);
+        case 'DELETE':
+            return astronauts.filter((astronaut)=> astronaut._id !== action.payload);
         default:
             return astronauts;
     }

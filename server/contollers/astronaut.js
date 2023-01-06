@@ -36,3 +36,12 @@ export const updateAstronaut = async (req,res) => {
 
     res.json(updateAstronaut);
 }
+
+export const deleteAstronaut = async (req,res) => {
+    const {id} = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No astroaut with that id');
+
+    await AstronautMess.findByIdAndRemove(id);
+    console.log('DELETE!');
+    res.json({message: 'Astronaut deleted'});
+}

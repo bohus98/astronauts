@@ -8,6 +8,8 @@ import Astronauts from "./components/Astronauts/Astronauts";
 import Form from "./components/Form/Form";
 import useStyles from './styles'
 
+
+
 const App = () => {
     const [currentId, setCurrentId] = useState(null);
     
@@ -24,15 +26,15 @@ const App = () => {
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <Typography className={classes.heading} variant="h2" align="center">Astronauts</Typography>
                 <img className={classes.image} src={astronaut} alt="astronaut" height={60} />
-               
+
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid className={classes.mainContainer} container justifyContent="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
+                    <Grid className={classes.mainContainer} container justifyContent="space-between" alignItems="stretch" spacing={2}>
+                        <Grid item xs={12} sm={7} lg={8}>
                             <Astronauts setCurrentId={setCurrentId}/>
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={4} lg={4}>
                             <Form currentId={currentId} setCurrentId={setCurrentId}/>
                         </Grid>
                     </Grid>

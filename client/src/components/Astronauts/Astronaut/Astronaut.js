@@ -15,22 +15,25 @@ const Astronaut = ({astronaut, setCurrentId}) => {
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={astronaut.selectedFile} title={astronaut.firstName + ' ' + astronaut.lastdName} ></CardMedia>
-            <div className={classes.overlay}>
-                <Typography variant="h6">{astronaut.firstName + ' ' + astronaut.lastName}</Typography>
-                
-            </div>
+           
             <div className={classes.overlay2}>
-                <Button style={{color: 'white'}} size="small" onClick={()=>setCurrentId(astronaut._id)}>
+                <Button color= 'secondary' size="small" onClick={()=>setCurrentId(astronaut._id)}>
                     <MoreHorizIcon fontSize="default"/>
                 </Button>
             </div>
+            <div className={classes.overlay}>
+            <Typography variant="h6" color="textPrimary">{astronaut.firstName + ' ' + astronaut.lastName}</Typography>  
+                
+            </div>
+            
             <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary">{astronaut.superPowers.map((superPower) => `${superPower} `)}</Typography>
+                
+            <Typography variant="body2" color="textPrimary">{astronaut.superPowers.map((superPower) => `${superPower} `)}</Typography>
             </div>
             <Typography className={classes.title} gutterBottom variant="body2" component="h2">{astronaut.birthDate}</Typography>
             <CardContent>
             
-                <Typography className={classes.title} variant="body2" color="textSecondary" gutterBottom>{astronaut.about}</Typography>
+            <Typography className={classes.title} variant="body2" color="textSecondary" gutterBottom>{astronaut.about}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" onClick={()=>dispatch(deleteAstronaut(astronaut._id))}>
